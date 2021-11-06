@@ -20,23 +20,27 @@ namespace EAttendance
 
         private void Form_RegisterStudents_Load(object sender, EventArgs e)
         {
-
+            cb_sections.DataSource = GetAllSections();
         }
 
-        String GetAllSubjects()
+        List<String> GetSubjects(string section)
         {
-            
+            List<String> subjectsList = new List<String>();
             string text = System.IO.File.ReadAllText(@"config.txt");
             MySqlConnection cn = new MySqlConnection(text);
-            MySqlCommand cmd = new MySqlCommand("INSERT INTO subjects(instructor,subject,section) VALUES(@instructor,@subject,@section)", cn);
-            //cmd.Parameters.Add("instructor", MySqlDbType.VarChar).Value = tb_Instructor.Text;
+            MySqlCommand cmd = new MySqlCommand("Select subject from Subjects where section = @section", cn);
+            cmd.Parameters.Add("section", MySqlDbType.VarChar).Value = section;
             //cmd.Parameters.Add("subject", MySqlDbType.VarChar).Value = tb_Subject.Text;
             //cmd.Parameters.Add("section", MySqlDbType.VarChar).Value = tb_Section.Text;
             try
             {
                 cn.Open();
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Subject Added");
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    subjectsList.Add(rdr[0].ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -49,11 +53,47 @@ namespace EAttendance
                     cn.Close();
                 }
             }
-            this.Close();
-            String x = "hello";
-            return x;
+
+            return subjectsList;
         }
-        
+        List<String> GetAllSections()
+        {
+            List<String> subjectsList = new List<String>();
+            string text = System.IO.File.ReadAllText(@"config.txt");
+            MySqlConnection cn = new MySqlConnection(text);
+            MySqlCommand cmd = new MySqlCommand("Select distinct section from Subjects", cn);
+            //cmd.Parameters.Add("instructor", MySqlDbType.VarChar).Value = tb_Instructor.Text;
+            //cmd.Parameters.Add("subject", MySqlDbType.VarChar).Value = tb_Subject.Text;
+            //cmd.Parameters.Add("section", MySqlDbType.VarChar).Value = tb_Section.Text;
+            try
+            {
+                cn.Open();
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    subjectsList.Add(rdr[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (cn.State.ToString() == "Open")
+                {
+                    cn.Close();
+                }
+            }
+
+            return subjectsList;
+        }
+
+        private void cb_sections_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cb_subjects.DataSource = GetSubjects(cb_sections.Text);
+        }
     }
-    
+
 }

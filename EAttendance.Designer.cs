@@ -1,7 +1,7 @@
 ﻿
 namespace EAttendance
 {
-    partial class Form_EAttendance
+    partial class sForm_EAttendance
     {
         /// <summary>
         /// Required designer variable.
@@ -33,18 +33,19 @@ namespace EAttendance
             this.btn_AddSubject = new System.Windows.Forms.Button();
             this.btn_MarkAttendance = new System.Windows.Forms.Button();
             this.btn_RegisterStudent = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Label_WelcomeMsg
             // 
-            this.Label_WelcomeMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Label_WelcomeMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_WelcomeMsg.AutoSize = true;
             this.Label_WelcomeMsg.Font = new System.Drawing.Font("Segoe Script", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_WelcomeMsg.Location = new System.Drawing.Point(-11, 9);
             this.Label_WelcomeMsg.Name = "Label_WelcomeMsg";
-            this.Label_WelcomeMsg.Size = new System.Drawing.Size(631, 57);
+            this.Label_WelcomeMsg.Size = new System.Drawing.Size(607, 55);
             this.Label_WelcomeMsg.TabIndex = 0;
             this.Label_WelcomeMsg.Text = "Welcome to E-Attendance System";
             this.Label_WelcomeMsg.Click += new System.EventHandler(this.Label_WelcomeMsg_Click);
@@ -88,12 +89,20 @@ namespace EAttendance
             this.btn_RegisterStudent.UseVisualStyleBackColor = false;
             this.btn_RegisterStudent.Click += new System.EventHandler(this.btn_RegisterStudent_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(488, 327);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(139, 22);
+            this.textBox1.TabIndex = 2;
+            // 
             // Form_EAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(651, 370);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_MarkAttendance);
             this.Controls.Add(this.btn_RegisterStudent);
             this.Controls.Add(this.btn_AddSubject);
@@ -111,5 +120,6 @@ namespace EAttendance
         private System.Windows.Forms.Button btn_AddSubject;
         private System.Windows.Forms.Button btn_MarkAttendance;
         private System.Windows.Forms.Button btn_RegisterStudent;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

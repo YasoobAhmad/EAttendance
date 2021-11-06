@@ -48,6 +48,7 @@ namespace EAttendance
             this.cb_sections.Name = "cb_sections";
             this.cb_sections.Size = new System.Drawing.Size(121, 24);
             this.cb_sections.TabIndex = 0;
+            this.cb_sections.SelectedIndexChanged += new System.EventHandler(this.cb_sections_SelectedIndexChanged);
             // 
             // label1
             // 
