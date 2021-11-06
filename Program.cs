@@ -14,9 +14,6 @@ namespace EAttendance
         [STAThread]
         static void Main()
         {
-            int xyz = 0; 
-            //Checking
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_EAttendance());
