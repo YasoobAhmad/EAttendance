@@ -104,6 +104,10 @@
     <Compile Include="EAttendance.Designer.cs">
       <DependentUpon>EAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enrollment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FMDHandler.cs" />
     <Compile Include="Form_AddSubject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,10 +120,21 @@
     <Compile Include="Form_RegisterStudents.Designer.cs">
       <DependentUpon>Form_RegisterStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sample.Designer.cs">
+      <DependentUpon>sample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student.cs" />
     <EmbeddedResource Include="EAttendance.resx">
       <DependentUpon>EAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Enrollment.resx">
+      <DependentUpon>Enrollment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_AddSubject.resx">
       <DependentUpon>Form_AddSubject.cs</DependentUpon>

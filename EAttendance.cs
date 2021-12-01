@@ -36,6 +36,12 @@ namespace EAttendance
             this.Hide();
             formRegisterStudents.ShowDialog();
             this.Show();
+            //MessageBox.Show(check.ToString());
+        }
+
+        private void Form_EAttendance_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using DPUruNet;
+using EAttendance;
+using UareUSampleCSharp;
 
 namespace EAttendance
 {
@@ -13,15 +12,18 @@ namespace EAttendance
         /// <summary>
         /// Holds the main form with many functions common to all of SDK actions.
         /// </summary>
-        public Form_Main _sender;
-
+        public Helper helper;
+        
         List<Fmd> preenrollmentFmds;
+        private RichTextBox txtEnroll;
         int count;
-
-        public Enrollment()
+        Form_RegisterStudents sender;
+        public Enrollment(Form_RegisterStudents form_RegisterStudents)
         {
+            helper = new Helper();
+            
+            //sender = form_RegisterStudents;
             InitializeComponent();
-
         }
 
         /// <summary>
@@ -34,15 +36,15 @@ namespace EAttendance
             txtEnroll.Text = string.Empty;
             preenrollmentFmds = new List<Fmd>();
             count = 0;
-
             SendMessage(Action.SendMessage, "Place a finger on the reader.");
-
-            if (!_sender.OpenReader())
+            
+            if (!helper.OpenReader())
             {
+                
                 this.Close();
             }
 
-            if (!_sender.StartCaptureAsync(this.OnCaptured))
+            if (!helper.StartCaptureAsync(this.OnCaptured))
             {
                 this.Close();
             }
@@ -54,10 +56,11 @@ namespace EAttendance
         /// <param name="captureResult">contains info and data on the fingerprint capture</param>
         private void OnCaptured(CaptureResult captureResult)
         {
+
             try
             {
                 // Check capture quality and throw an error if bad.
-                if (!_sender.CheckCaptureResult(captureResult)) return;
+                if (!helper.CheckCaptureResult(captureResult)) return;
 
                 count++;
 
@@ -83,7 +86,7 @@ namespace EAttendance
 
                 if (resultConversion.ResultCode != Constants.ResultCode.DP_SUCCESS)
                 {
-                    _sender.Reset = true;
+                    helper.Reset = true;
                     throw new Exception(resultConversion.ResultCode.ToString());
                 }
 
@@ -92,14 +95,19 @@ namespace EAttendance
 
                 if (count >= 4)
                 {
+
+                    this.Hide();
                     DataResult<Fmd> resultEnrollment = DPUruNet.Enrollment.CreateEnrollmentFmd(Constants.Formats.Fmd.ANSI, preenrollmentFmds);
                     if (resultEnrollment.ResultCode == Constants.ResultCode.DP_SUCCESS)
                     {
                         SendMessage(Action.SendMessage, "An enrollment FMD was successfully created.");
                         SendMessage(Action.SendMessage, "Place a finger on the reader.");
 
-                        _sender.fingerPrintHND.addFingerPrint(preenrollmentFmds[0]);
-                        _sender.fingerPrintHND.addDataToDatabase("Name", preenrollmentFmds[0]);
+                        //helper.fingerPrintHND.addFingerPrint(preenrollmentFmds[0]);
+
+                        sender.fingerPrint = preenrollmentFmds[0];
+
+                        //helper.fingerPrintHND.addDataToDatabase("Name", preenrollmentFmds[0]);
                         //_sender.fingerPrintHND.verification(preenrollmentFmds[0]);
                         preenrollmentFmds.Clear();
                         count = 0;
@@ -135,10 +143,6 @@ namespace EAttendance
         /// <summary>
         /// Close window.
         /// </summary>
-        private void Enrollment_Closed(object sender, System.EventArgs e)
-        {
-            _sender.CancelCaptureAndCloseReader(this.OnCaptured);
-        }
 
         #region SendMessage
         private enum Action
@@ -170,24 +174,45 @@ namespace EAttendance
             }
             catch (Exception)
             {
-
             }
         }
         #endregion
 
-        public Image byteArrayToImage(byte[] bytesArr)
+        private void InitializeComponent()
         {
-            using (MemoryStream memstr = new MemoryStream(bytesArr))
-            {
-                Image img = Image.FromStream(memstr);
-                return img;
-            }
+            this.txtEnroll = new System.Windows.Forms.RichTextBox();
+            this.SuspendLayout();
+            // 
+            // txtEnroll
+            // 
+            this.txtEnroll.Location = new System.Drawing.Point(12, 12);
+            this.txtEnroll.Name = "txtEnroll";
+            this.txtEnroll.Size = new System.Drawing.Size(365, 241);
+            this.txtEnroll.TabIndex = 0;
+            this.txtEnroll.Text = "";
+            this.txtEnroll.TextChanged += new System.EventHandler(this.txtEnroll_TextChanged);
+            // 
+            // Enrollment
+            // 
+            this.ClientSize = new System.Drawing.Size(389, 301);
+            this.Controls.Add(this.txtEnroll);
+            this.Name = "Enrollment";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Enrollment_Closed);
+            this.Load += new System.EventHandler(this.Enrollment_Load);
+            this.ResumeLayout(false);
+
         }
 
+        
         private void txtEnroll_TextChanged(object sender, EventArgs e)
         {
 
         }
-    }
 
+        private void Enrollment_Closed(object sender, FormClosedEventArgs e)
+        {
+            Console.WriteLine("closedclosedclosedclosed");
+            helper.CancelCaptureAndCloseReader(this.OnCaptured);
+        }
+    }
 }

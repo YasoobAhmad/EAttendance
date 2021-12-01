@@ -1,7 +1,7 @@
 ﻿
 namespace EAttendance
 {
-    partial class Enrollment
+    partial class sample
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,10 @@ namespace EAttendance
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Enrollment
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 327);
-            this.Name = "Enrollment";
-            this.Text = "Enrollment";
-            this.ResumeLayout(false);
-
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "sample";
         }
 
         #endregion

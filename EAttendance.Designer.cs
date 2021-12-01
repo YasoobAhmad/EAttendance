@@ -1,7 +1,7 @@
 ﻿
 namespace EAttendance
 {
-    partial class sForm_EAttendance
+    partial class Form_EAttendance
     {
         /// <summary>
         /// Required designer variable.
@@ -38,8 +38,8 @@ namespace EAttendance
             // 
             // Label_WelcomeMsg
             // 
-            this.Label_WelcomeMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.Label_WelcomeMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_WelcomeMsg.AutoSize = true;
             this.Label_WelcomeMsg.Font = new System.Drawing.Font("Segoe Script", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -109,6 +109,7 @@ namespace EAttendance
             this.Controls.Add(this.Label_WelcomeMsg);
             this.Name = "Form_EAttendance";
             this.Text = "EAttendance";
+            this.Load += new System.EventHandler(this.Form_EAttendance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

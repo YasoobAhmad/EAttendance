@@ -1,15 +1,8 @@
-﻿
-using DocumentFormat.OpenXml.Presentation;
-using DPUruNet;
-using MySql.Data.MySqlClient;
+﻿using DPUruNet;
+using EAttendance;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace UareUSampleCSharp
 {
@@ -61,7 +54,7 @@ namespace UareUSampleCSharp
             //Byte[] bytes = br.ReadBytes((Int32)fingerprintData.Length);
 
             //Insert the file into database
-            DPFP.Template t = new DPFP.Template();
+            //DPFP.Template t = new DPFP.Template();
             MySqlConnection cn = new MySqlConnection("server=localhost;user=root;database=biometrics;port=3306;password=");
             MySqlCommand cmd = new MySqlCommand("INSERT INTO fingerprints(name,fingerprint) VALUES(@name, @FINGERPRINT)", cn);
             cmd.Parameters.Add("name", MySqlDbType.VarChar).Value = str;
@@ -72,6 +65,24 @@ namespace UareUSampleCSharp
             cn.Close();
 
 
+        }
+
+
+        public void addStudentToDatabase(Student s)
+        { 
+            //DPFP.Template t = new DPFP.Template();
+            MySqlConnection cn = new MySqlConnection("server=localhost;user=root;database=EAttendance;port=3306;password=");
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO Students(roll_no,name,subject, section, fingerprint) VALUES(@rollNo, @name, @subject, @section ,@fingerprint)", cn);
+            cmd.Parameters.Add("name", MySqlDbType.VarChar).Value = s.Name;
+            cmd.Parameters.Add("fingerprint", MySqlDbType.LongBlob).Value = s.Fingerprint.Bytes;
+            cmd.Parameters.Add("rollNo", MySqlDbType.VarChar).Value = s.RollNo;
+            cmd.Parameters.Add("subject", MySqlDbType.VarChar).Value = s.Subject;
+            cmd.Parameters.Add("section", MySqlDbType.VarChar).Value = s.Section;
+            
+            cn.Open();
+            cmd.ExecuteNonQuery();
+            cn.Close();
+            
         }
 
 

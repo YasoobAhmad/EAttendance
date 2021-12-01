@@ -32,12 +32,12 @@ namespace EAttendance
             this.cb_sections = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.text_RollNo = new System.Windows.Forms.TextBox();
             this.cb_subjects = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.text_Name = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -67,13 +67,14 @@ namespace EAttendance
             this.button1.TabIndex = 2;
             this.button1.Text = "Add Student";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // text_RollNo
             // 
-            this.textBox1.Location = new System.Drawing.Point(175, 150);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 3;
+            this.text_RollNo.Location = new System.Drawing.Point(175, 150);
+            this.text_RollNo.Name = "text_RollNo";
+            this.text_RollNo.Size = new System.Drawing.Size(121, 22);
+            this.text_RollNo.TabIndex = 3;
             // 
             // cb_subjects
             // 
@@ -109,13 +110,14 @@ namespace EAttendance
             this.label4.Size = new System.Drawing.Size(102, 17);
             this.label4.TabIndex = 1;
             this.label4.Text = "Student Name:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // textBox2
+            // text_Name
             // 
-            this.textBox2.Location = new System.Drawing.Point(175, 196);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 22);
-            this.textBox2.TabIndex = 3;
+            this.text_Name.Location = new System.Drawing.Point(175, 196);
+            this.text_Name.Name = "text_Name";
+            this.text_Name.Size = new System.Drawing.Size(121, 22);
+            this.text_Name.TabIndex = 3;
             // 
             // button2
             // 
@@ -125,14 +127,15 @@ namespace EAttendance
             this.button2.TabIndex = 2;
             this.button2.Text = "Scan FingerPrint";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form_RegisterStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 470);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.text_Name);
+            this.Controls.Add(this.text_RollNo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -154,12 +157,12 @@ namespace EAttendance
         private System.Windows.Forms.ComboBox cb_sections;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox text_RollNo;
         private System.Windows.Forms.ComboBox cb_subjects;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox text_Name;
         private System.Windows.Forms.Button button2;
     }
 }
